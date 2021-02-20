@@ -43,7 +43,7 @@ module.exports = function fetchTargetedContent(visitor, amcvCookie, callback) {
             payloads[mboxName] = fullPayload; 
 
             return reqPromise({
-                url: config.url,
+                url: config.mboxUrl,
                 qs: config.qs,
                 method: "POST",
                 json: fullPayload

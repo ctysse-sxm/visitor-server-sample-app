@@ -22,6 +22,7 @@ var app = express();
 var makeHomeRoute = require("./src/routes/home");
 var makeMultipleMboxesRoute = require("./src/routes/multipleMboxes");
 var HeadWithDTM = React.createFactory(require("./components/HeadWithDTM.jsx"));
+var HeadWithLaunch = React.createFactory(require("./components/HeadWithLaunch.jsx"));
 var HeadWithVisitorAPI = React.createFactory(require("./components/HeadWithVisitorAPI.jsx"));
 
 const PORT = process.env.PORT || 5000;
@@ -33,8 +34,8 @@ app.use(express.static("public"));
 
 // TODO Move to factory!
 var config = require("./config.json");
-var scriptURL = config.enableDTM ? config.dtmTagUrl : VISITORAPI_URL;
-var HeadComponent = config.enableDTM ? HeadWithDTM : HeadWithVisitorAPI
+var scriptURL = config.enableLaunch ? config.launchTagUrl : VISITORAPI_URL;
+var HeadComponent = config.enableLaunch ? HeadWithLaunch : HeadWithVisitorAPI
 
 app.get("/", makeHomeRoute(HeadComponent, scriptURL));
 app.get("/multiple", makeMultipleMboxesRoute(HeadComponent, scriptURL));
